@@ -17,11 +17,13 @@ import {MatInputModule} from '@angular/material/input';
 import {MatTableModule} from '@angular/material/table';
 import {MatRadioModule} from '@angular/material/radio'; 
 import {MatCardModule} from '@angular/material/card'; 
-import {ClipboardModule} from '@angular/cdk/clipboard'; 
+import {ClipboardModule} from '@angular/cdk/clipboard';
+import { HomeComponent } from './components/home/home.component'; 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

@@ -80,7 +80,7 @@ export class AppComponent {
   
       const area = (norte + sur)/2 * (este + oeste)/2
       const perimetro = norte + sur + este + oeste
-      this.result(area, perimetro)
+      this.result(area, perimetro,436.7118)
     
     }else if(this.optionCuerda == 'Quiche'){
       
@@ -91,29 +91,43 @@ export class AppComponent {
   
       const area = (norte + sur)/2 * (este + oeste)/2
       const perimetro = norte + sur + este + oeste
-      this.result(area, perimetro)
+      this.result(area, perimetro,628.8649)
 
     }
 
   }
   
-  result(area:any, perimetro:any){
+  data = {
+    area: 0,
+    perimetro: 0,
+    areaCuerda: 0,
+    perimetroCuerda:0
+  }
+
+  result(area:any, perimetro:any, cuerdaCuadrada:any){
     
+    this.data = {
+      area: 0,
+      perimetro: 0,
+      areaCuerda: 0,
+      perimetroCuerda:0
+    }
+
     swal.fire({
       icon:'success',
       text: `Calculo realizado correctamente`
     })
 
-    const data ={
+    this.data ={
       area: area.toFixed(2),
       perimetro: perimetro.toFixed(2),
-      areaCuerda: parseFloat(( area /436.7118).toFixed(2)),
+      areaCuerda: parseFloat(( area /cuerdaCuadrada).toFixed(2)),
       perimetroCuerda: parseFloat((perimetro/(436.7118 * 436.7118)).toFixed(2))
     }
 
-    this.valor = `Área (m²):${data.area}, Área (cuerda²): ${data.areaCuerda}`
-    this.dataSource.data.push(data);
-    this.dataSource2 = data
+    this.valor = `Área (m²):${this.data.area}, Área (cuerda²): ${this.data.areaCuerda}`
+    this.dataSource.data.push(this.data);
+    this.dataSource2 = this.data
     this.refresh()
 
   }
