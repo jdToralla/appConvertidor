@@ -1,0 +1,12 @@
+<mat-toolbar color="primary" class="pt-3">
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+      <mat-icon>poll</mat-icon>
+    </button>
+    <span>App Dimensiones</span>
+    <span class="example-spacer"></span>
+  </mat-toolbar>
+
+  <div class="container w-100 mt-3">
+      <button mat-raised-button color="warn" class="btn-block" [routerLink]="'/convert'">Conversion de Áreas<mat-icon class="ml-2">shuffle</mat-icon></button>
+      <button mat-raised-button color="accent" class="btn-block" [routerLink]="'/calculate-area'">Calcular area <mat-icon class="ml-2">view_module</mat-icon></button>
+  </div>

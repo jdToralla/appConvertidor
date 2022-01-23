@@ -1,0 +1,43 @@
+<mat-toolbar color="primary" class="pt-3 fixed" style="position: fixed; top: 0; z-index: 3;">
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+      <mat-icon>poll</mat-icon>
+    </button>
+    <span>Grafica</span>
+    <span class="example-spacer"></span>
+    <button [routerLink]="'/calculate-area'" mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+  </mat-toolbar>
+
+  <div class="text-center" style="padding-top: 65px;">
+        <p class="col-12"> <strong> Ángulo recto</strong></p>
+        <div class="d-flex">
+            <mat-radio-group class="col-12" aria-label="Select an option">
+              <mat-radio-button class="mr-2" value="A" (change)="selection($event.value)">NorOeste (A)</mat-radio-button>
+              <mat-radio-button class="mr-2" value="B" (change)="selection($event.value)">NorEste (B)</mat-radio-button>
+              <br>
+              <mat-radio-button class="mr-2" value="C" (change)="selection($event.value)">SurEste  (C)</mat-radio-button>
+              <mat-radio-button value="D" (change)="selection($event.value)">SurOeste (D)</mat-radio-button>
+            </mat-radio-group>
+        </div>
+  </div>
+  <div class="text-center">
+      <p class="col-12"> <strong> Grafica</strong> </p>
+      <div class="d-flex">
+        <mat-radio-group class="col-12" aria-label="Select an option">
+          <mat-radio-button class="mr-2" value="COLOR" (change)="selectionC($event.value)">Color</mat-radio-button>
+          <mat-radio-button class="mr-2" value="BYN" (change)="selectionC($event.value)">Blanco y Negro</mat-radio-button>
+        </mat-radio-group>
+    </div>
+  </div>
+  <div class="text-center">
+    <button (click)="graphNow()" mat-raised-button color="primary">
+        Graficar
+        <mat-icon class="mt-2">poll</mat-icon>
+      </button>
+  </div>
+  <div class="container-fluid d-flex justify-content-center align-items-center mt-3">
+    <canvas id="canvasId" #canvasRef style="overflow: hidden;" ></canvas>
+    <!-- <button class="btn btn-primary" (click)="render()">Enviar</button> -->
+  </div>
+  
