@@ -56,10 +56,10 @@ export class GraphComponent implements OnInit, AfterViewInit {
     canvasEl.height = this.height;
 
     let dimensionesCardinales = {
-      norte: this.routeActive.snapshot.params.norte,
-      sur: this.routeActive.snapshot.params.sur,
-      este: this.routeActive.snapshot.params.este,
-      oeste: this.routeActive.snapshot.params.oeste
+      norte: parseFloat(this.routeActive.snapshot.params.norte),
+      sur: parseFloat(this.routeActive.snapshot.params.sur),
+      este: parseFloat(this.routeActive.snapshot.params.este),
+      oeste: parseFloat(this.routeActive.snapshot.params.oeste)
     }
     // let dimensionesCardinales = {
     //   norte: 50,
@@ -67,15 +67,16 @@ export class GraphComponent implements OnInit, AfterViewInit {
     //   este: 60,
     //   oeste: 60
     // }
+    // console.log('Prueba',dimensionesCardinales );
 
     let max = Object.entries(dimensionesCardinales).reduce(function (prev, curr) {
       return prev[1] > curr[1] ? prev : curr;
     });
     let dimensionMasGrande = max[1]
-    console.log('Cual es:', dimensionMasGrande);
+    // console.log('Cual es:', dimensionMasGrande);
 
     let coordenadasInicio = { x: 0, y: 0 }
-    let distanciaCota = 30
+    // let distanciaCota = 30
     let anguloRecto = this.anguloRecto
     let posiciones = {
       xNorte: 0, yNorte: 0,
@@ -86,7 +87,6 @@ export class GraphComponent implements OnInit, AfterViewInit {
 
 
     if (anguloRecto == 'A') {
-
       coordenadasInicio.x = 70
       coordenadasInicio.y = 70
 
@@ -101,6 +101,8 @@ export class GraphComponent implements OnInit, AfterViewInit {
 
       posiciones.xOeste = coordenadasInicio.x
       posiciones.yOeste = (((dimensionesCardinales.oeste * 100) / dimensionMasGrande) * 1030) / 100
+
+      console.log('Posiciones', posiciones);
 
       /** Figura y relleno */
       this.cx.beginPath();
@@ -139,22 +141,23 @@ export class GraphComponent implements OnInit, AfterViewInit {
       this.drawCotas(posiciones.xOeste, posiciones.yOeste, 'surOeste')
       this.drawCotas(posiciones.xEste, posiciones.yEste, 'surEste')
 
+
     } else if (anguloRecto == 'B') {
       coordenadasInicio.x = 1030
       coordenadasInicio.y = 70
-      
-      posiciones.xNorte = 1100 -(((dimensionesCardinales.norte * 100) / dimensionMasGrande) * 1030) / 100
+
+      posiciones.xNorte = 1100 - (((dimensionesCardinales.norte * 100) / dimensionMasGrande) * 1030) / 100
       posiciones.yNorte = coordenadasInicio.y
-      
+
       posiciones.xSur = 1100 - (((dimensionesCardinales.sur * 100) / dimensionMasGrande) * 1030) / 100
       posiciones.ySur = (((dimensionesCardinales.oeste * 100) / dimensionMasGrande) * 1030) / 100
-      
-      posiciones.xOeste = 1100 -(((dimensionesCardinales.sur * 100) / dimensionMasGrande) * 1030) / 100
+
+      posiciones.xOeste = 1100 - (((dimensionesCardinales.sur * 100) / dimensionMasGrande) * 1030) / 100
       posiciones.yOeste = (((dimensionesCardinales.oeste * 100) / dimensionMasGrande) * 1030) / 100
 
-      posiciones.xEste= coordenadasInicio.x
+      posiciones.xEste = coordenadasInicio.x
       posiciones.yEste = (((dimensionesCardinales.este * 100) / dimensionMasGrande) * 1030) / 100
-      
+
 
       /** Figura y relleno */
       this.cx.beginPath();
@@ -162,7 +165,7 @@ export class GraphComponent implements OnInit, AfterViewInit {
       this.cx.lineTo(posiciones.xNorte, posiciones.yNorte)
       this.cx.lineTo(posiciones.xOeste, posiciones.yOeste)
       this.cx.stroke();
-      
+
       this.cx.moveTo(coordenadasInicio.x, coordenadasInicio.y) //Fijo
       this.cx.lineTo(posiciones.xEste, posiciones.yEste)
       this.cx.lineTo(posiciones.xSur, posiciones.ySur)
@@ -199,15 +202,15 @@ export class GraphComponent implements OnInit, AfterViewInit {
       coordenadasInicio.y = 1030
 
       posiciones.xEste = coordenadasInicio.x
-      posiciones.yEste = 1100-(((dimensionesCardinales.este * 100) / dimensionMasGrande) * 1030) / 100
-      
-      posiciones.xNorte = 1100-(((dimensionesCardinales.norte * 100) / dimensionMasGrande) * 1030) / 100
-      posiciones.yNorte = 1100-(((dimensionesCardinales.oeste * 100) / dimensionMasGrande) * 1030) / 100
-      
-      posiciones.xOeste = 1100-(((dimensionesCardinales.norte * 100) / dimensionMasGrande) * 1030) / 100
-      posiciones.yOeste = 1100-(((dimensionesCardinales.oeste * 100) / dimensionMasGrande) * 1030) / 100
+      posiciones.yEste = 1100 - (((dimensionesCardinales.este * 100) / dimensionMasGrande) * 1030) / 100
 
-      posiciones.xSur = 1100- (((dimensionesCardinales.sur * 100) / dimensionMasGrande) * 1030) / 100
+      posiciones.xNorte = 1100 - (((dimensionesCardinales.norte * 100) / dimensionMasGrande) * 1030) / 100
+      posiciones.yNorte = 1100 - (((dimensionesCardinales.oeste * 100) / dimensionMasGrande) * 1030) / 100
+
+      posiciones.xOeste = 1100 - (((dimensionesCardinales.norte * 100) / dimensionMasGrande) * 1030) / 100
+      posiciones.yOeste = 1100 - (((dimensionesCardinales.oeste * 100) / dimensionMasGrande) * 1030) / 100
+
+      posiciones.xSur = 1100 - (((dimensionesCardinales.sur * 100) / dimensionMasGrande) * 1030) / 100
       posiciones.ySur = coordenadasInicio.y
 
       /** Figura y relleno */
@@ -216,7 +219,7 @@ export class GraphComponent implements OnInit, AfterViewInit {
       this.cx.lineTo(posiciones.xEste, posiciones.yEste)
       this.cx.lineTo(posiciones.xNorte, posiciones.yNorte)
       this.cx.stroke();
-      
+
       this.cx.moveTo(coordenadasInicio.x, coordenadasInicio.y) //Fijo
       this.cx.lineTo(posiciones.xSur, posiciones.ySur)
       this.cx.lineTo(posiciones.xOeste, posiciones.yOeste)
@@ -235,7 +238,7 @@ export class GraphComponent implements OnInit, AfterViewInit {
 
       // /** Cotas */
       this.drawSide('oeste', dimensionesCardinales, posiciones.xSur, posiciones.ySur, posiciones.xNorte, posiciones.yNorte)
-      this.drawSide('norte', dimensionesCardinales, posiciones.xEste, posiciones.yEste,posiciones.xNorte, posiciones.yNorte)
+      this.drawSide('norte', dimensionesCardinales, posiciones.xEste, posiciones.yEste, posiciones.xNorte, posiciones.yNorte)
       this.drawSide('sur', dimensionesCardinales, coordenadasInicio.x, coordenadasInicio.y, posiciones.xSur, posiciones.ySur)
       this.drawSide('este', dimensionesCardinales, coordenadasInicio.x, coordenadasInicio.y, posiciones.xEste, posiciones.yEste)
 
@@ -245,7 +248,7 @@ export class GraphComponent implements OnInit, AfterViewInit {
       this.drawCotas(posiciones.xNorte, posiciones.yNorte, 'norOeste')
       this.drawCotas(posiciones.xEste, posiciones.yEste, 'norEste')
       this.drawCotas(posiciones.xSur, posiciones.ySur, 'surOeste')
-      
+
     } else if (anguloRecto == 'D') {
 
       coordenadasInicio.x = 70
@@ -298,11 +301,12 @@ export class GraphComponent implements OnInit, AfterViewInit {
       this.drawCotas(posiciones.xNorte, posiciones.yNorte, 'norEste')
       this.drawCotas(posiciones.xOeste, posiciones.yOeste, 'norOeste')
       this.drawCotas(posiciones.xSur, posiciones.ySur, 'surEste')
-      
-    }
 
-    
-      
+    }
+    console.log('Dimension mas grande: ', dimensionMasGrande);
+
+
+
   }
 
 
@@ -353,8 +357,8 @@ export class GraphComponent implements OnInit, AfterViewInit {
 
 
   drawCotas(x: number, y: number, type: string): void {
-   console.log('x ',x, 'y ', y, 'type ', type );
-   
+    console.log('x ', x, 'y ', y, 'type ', type);
+
     this.cx.beginPath();
     this.cx.moveTo(x, y);
 

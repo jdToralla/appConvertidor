@@ -1,25 +1,27 @@
-<mat-toolbar color="primary" class="pt-3">
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-        <mat-icon>poll</mat-icon>
-    </button>
-    <span>Convertidor</span>
-    <span class="example-spacer"></span>
-    <button [routerLink]="'/home'" mat-icon-button class="example-icon"
-        aria-label="Example icon-button with share icon">
-        <mat-icon>arrow_back</mat-icon>
-    </button>
-</mat-toolbar>
+<div class="pt-4">
+    <mat-toolbar color="primary">
+        <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+            <mat-icon>poll</mat-icon>
+        </button>
+        <span>Convertidor</span>
+        <span class="example-spacer"></span>
+        <button [routerLink]="'/home'" mat-icon-button class="example-icon"
+            aria-label="Example icon-button with share icon">
+            <mat-icon>arrow_back</mat-icon>
+        </button>
+    </mat-toolbar>
+</div>
 
 <div class="container mt-3">
     <div class="row">
         <div class="col-6">
-            <mat-form-field class="example-full-width">
+            <mat-form-field class="example-full-width w-100">
                 <mat-label>Metros²</mat-label>
                 <input [(ngModel)]="measures.metrosCuadrados" type="number" matInput placeholder="Escriba una medida." min="0" />
             </mat-form-field>
         </div>
         <div class="col-6">
-            <mat-form-field class="example-full-width">
+            <mat-form-field class="example-full-width w-100">
                 <mat-label>Manzanas</mat-label>
                 <input [(ngModel)]="measures.manzanas" type="number" matInput placeholder="Escriba una medida." min="0" />
             </mat-form-field>
@@ -27,13 +29,13 @@
     </div>
     <div class="row">
         <div class="col-6">
-            <mat-form-field class="example-full-width">
+            <mat-form-field class="example-full-width w-100">
                 <mat-label>Varas²</mat-label>
                 <input [(ngModel)]="measures.varasCuadradas" type="number" matInput placeholder="Escriba una medida." min="0" />
             </mat-form-field>
         </div>
         <div class="col-6">
-            <mat-form-field class="example-full-width">
+            <mat-form-field class="example-full-width w-100">
                 <mat-label>Caballerias</mat-label>
                 <input [(ngModel)]="measures.caballerias" type="number" matInput placeholder="Escriba una medida." min="0" />
             </mat-form-field>
@@ -41,13 +43,13 @@
     </div>
     <div class="row">
         <div class="col-6">
-            <mat-form-field class="example-full-width">
+            <mat-form-field class="example-full-width w-100">
                 <mat-label>Cuerdas 25*25 </mat-label>
                 <input [(ngModel)]="measures.cuerdas25" type="number" matInput placeholder="Escriba una medida." min="0" />
             </mat-form-field>
         </div>
         <div class="col-6">
-            <mat-form-field class="example-full-width">
+            <mat-form-field class="example-full-width w-100">
                 <mat-label>Cuerdas 40*40</mat-label>
                 <input [(ngModel)]="measures.cuerdas40" type="number" matInput placeholder="Escriba una medida." min="0" />
             </mat-form-field>
@@ -57,11 +59,11 @@
         <div class="col-45">
             <button (click)="calculate()" mat-raised-button color="primary">
                 Calcular
-                <mat-icon class="mt-2">calculate</mat-icon>
+                <mat-icon class="ml-2">calculate</mat-icon>
             </button>
-            <button (click)="cancel()" mat-raised-button class="ml-2" color="warn">
+            <button (click)="cancel()" mat-raised-button class="ml-3" color="warn">
                 Borrar
-                <mat-icon class="mt-2">delete</mat-icon>
+                <mat-icon class="ml-2">delete</mat-icon>
             </button>
         </div>
     </div>
